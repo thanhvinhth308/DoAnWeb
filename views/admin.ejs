@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>admin</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <% include partials/head %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .bg-base {
+            height: 100vh;
+            /* background-color: pink(208, 208, 229); */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .title-cyber {
+            font-size: 50px;
+            font-weight: 700;
+            position: absolute;
+            top: 10px;
+
+            background: -webkit-linear-gradient(gold, brown);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .student-managerment__content {
+            width: 80%;
+        }
+
+        .color__white {
+            color: white;
+        }
+
+        .header__size {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .body__size {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .min-width {
+            min-width: 100px;
+        }
+
+        .student-list {
+            min-height: 80vh;
+            max-height: 80vh;
+            overflow-y: scroll;
+            z-index: 1000;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+
+<body>
+    <header>
+        <div class="tt-col-obj tt-obj-menu">
+            <!-- tt-menu -->
+            <div class="tt-desctop-parent-menu tt-parent-box">
+                <div class="tt-desctop-menu">
+                    <nav>
+                        <ul>
+                            <li class="dropdown tt-megamenu-col-02 selected">
+                                <a href="/">Trang chủ</a>
+
+                            </li>
+                            <li class="dropdown megamenu">
+                                <a href="/products">Cửa hàng</a>
+                            </li>
+
+                            <li class="dropdown megamenu">
+                                <a href="/admin">Admin</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /tt-menu -->
+        </div>
+    </header>
+    <main class="bg-dark">
+        <div class="container student-managerment bg-base">
+            <h2 class="title-cyber">
+                <span class="cyber--title">Admin</span><span class="student--title"></span>
+            </h2>
+            <div class="student-managerment__content">
+                <div class="mb-4 text-right">
+                    <button id="btnPopupModalAdd" class="btn btn-lg btn-outline-warning" data-toggle="modal"
+                        data-target="#studentModal">
+                        Thêm Sản Phẩm
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="studentModal" tabindex="-1" role="dialog"
+                        aria-labelledby="studentModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 id="title-model" class="modal-title" id="exampleModalLabel">
+                                        Thêm Học Sinh
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text min-width" id="hoVaTen">name</span>
+                                            </div>
+                                            <input id="name" name="name" type="text" class="form-control"
+                                                placeholder="name ..." aria-label="HoVaTen"
+                                                aria-describedby="hoVaTen" />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text min-width" id="tuoi">stock</span>
+                                            </div>
+                                            <input id="stock" name="stock" type="text" class="form-control"
+                                                placeholder="stock ... " aria-label="stock" aria-describedby="tuoi" />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text min-width" for="price">price</label>
+                                            </div>
+                                            <input id="price" name="price" type="text" class="form-control"
+                                                placeholder="price ... " aria-label="price" aria-describedby="tuoi" />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text min-width" for="labels">labels</label>
+                                            </div>
+                                            <input id="labels" name="labels" type="text" class="form-control"
+                                                placeholder="labels ... " aria-label="price" aria-describedby="tuoi" />
+                                        </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Đóng
+                                    </button>
+                                    <button id="addStudent" type="submit" class="btn btn-outline-warning">
+                                        Thêm
+                                    </button>
+
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- update model -->
+
+
+
+                </div>
+                <div class="student-list">
+                    <table class="table">
+                        <thead class="color__white header__size">
+                            <tr>
+                                <th scope="col">Tên </th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Lớp</th>
+                                <th scope="col">xử lý</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody" class="color__white body__size">
+                            <% trendings.forEach(function(prod) { %> <tr>
+                                <th><%=prod.name%></th>
+                                <th><%=prod.stock%></th>
+                                <th><%=prod.price%></th>
+                                <th><%=prod.labels%></th>
+                                <th>
+                                    <form method="POST" action="/admin/<%=prod._id%>?_method=DELETE">
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            Xóa
+                                        </button>
+                                    </form>
+                                    <div class="modal fade" id="updateModal<%=prod._id%>" tabindex="-1" role="dialog"
+                                        aria-labelledby="studentModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 id="title-model" class="modal-title" id="exampleModalLabel">
+                                                        Thêm Học Sinh
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post" action="/admin/<%=prod._id%>?_method=PUT">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text min-width"
+                                                                    id="hoVaTen">name</span>
+                                                            </div>
+                                                            <input id="name" name="name" type="text"
+                                                                class="form-control" placeholder="name ..."
+                                                                aria-label="HoVaTen" aria-describedby="hoVaTen" />
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text min-width"
+                                                                    id="tuoi">stock</span>
+                                                            </div>
+                                                            <input id="stock" name="stock" type="text"
+                                                                class="form-control" placeholder="stock ... "
+                                                                aria-label="stock" aria-describedby="tuoi" />
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text min-width"
+                                                                    for="price">price</label>
+                                                            </div>
+                                                            <input id="price" name="price" type="text"
+                                                                class="form-control" placeholder="price ... "
+                                                                aria-label="price" aria-describedby="tuoi" />
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text min-width"
+                                                                    for="labels">labels</label>
+                                                            </div>
+                                                            <input id="labels" name="labels" type="text"
+                                                                class="form-control" placeholder="labels ... "
+                                                                aria-label="price" aria-describedby="tuoi" />
+                                                        </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
+                                                        Đóng
+                                                    </button>
+                                                    <button id="addStudent" type="submit"
+                                                        class="btn btn-outline-warning">
+                                                        Cập nhật
+                                                    </button>
+
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                        data-target="#updateModal<%=prod._id%>">
+                                        Sửa
+                                    </button>
+                                </th>
+                            </tr><% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Messages -->
+    <div class=" modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="modalMessageLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <p class="alert alert-primary" id="message-content">
+                Thành Công
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </p>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
